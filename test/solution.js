@@ -1,79 +1,66 @@
 const chai = require('chai');
-//const SpreadSheet = require('../spreadSheet.js');
+const Words = require('../words.js');
 
-//var sheet;
+
+var text;
+var wordsToExclude = ['las', 'la', 'en', 'de', 'es'];
 
 describe("solution", () => {
     beforeEach(() => {
         //sheet = new SpreadSheet();
+        text = 'Esta noche, buscando tu boca en otra boca casi creyéndolo, porque así de ciego es este río que me tira en mujer y me sumerge entre sus párpados, qué tristeza es nadar al fin hacia la orilla del sopor sabiendo que el sopor es ese esclavo innoble que acepta las monedas falsas, las circula sonriendo.';
     });
 
-    describe("sheet", () => {
-        describe("cells", () => {
-            it.skip("should populate two cells with numeric values and response the stored values", () => {
+    describe("words", () => {
+            it("should get the most used word in text when 1 word text", () => {
 
                 // ...
                 // Code here!
                 // ...
 
-                chai.expect( sheet.get("a1") )
+                var words = new Words("word");
+
+                var mostUsedWords = words.mostUsedWords();
+                chai.expect( mostUsedWords.length )
                     .to.be.eql(1);
-                chai.expect( sheet.get("a2") )
+                chai.expect (mostUsedWords[0])
+                    .to.be.eq('word');
+
+            });
+
+            it("should get most used word in text with multiple words", () => {
+
+                // ...
+                // Code here!
+                // ...
+
+                var words = new Words("not word not");
+
+                var mostUsedWords = words.mostUsedWords();
+                chai.expect( mostUsedWords.length )
+                    .to.be.eql(1);
+                chai.expect (mostUsedWords[0])
+                    .to.be.eq('not');
+            });
+
+            it("should get multiple most used words", () => {
+
+                // ...
+                // Code here!
+                // ...
+                var words = new Words("not word not word");
+
+                var mostUsedWords = words.mostUsedWords();
+
+                chai.expect( mostUsedWords.length )
                     .to.be.eql(2);
+                chai.expect (mostUsedWords[0])
+                    .to.be.eq('not');
+                chai.expect (mostUsedWords[1])
+                    .to.be.eq('word');
+
             });
 
-            it.skip("should polulate cells with a label and a value and response the stored values", () => {
-
-                // ...
-                // Code here!
-                // ...
-
-                chai.expect( sheet.get("a1") )
-                    .to.be.eql("Valor:");
-                chai.expect( sheet.get("a2") )
-                    .to.be.eql(2);
-            });
-
-            it.skip("should store values and update values references", () => {
-
-                // ...
-                // Code here!
-                // ...
-
-                chai.expect( sheet.get("a1") )
-                    .to.be.eql(1);
-                chai.expect( sheet.get("a2") )
-                    .to.be.eql(1);
-            });
-
-            it.skip("should response summatory", () => {
-
-                // ...
-                // Code here!
-                // ...
-
-                chai.expect( sheet.get("a3") )
-                    .to.be.eql(3);
-
-                sheet.setValue("a2", 9);
-
-                chai.expect(10)
-                    .to.be.eql( sheet.get("a3") );
-            });
-
-            it.skip("should response summatory - broken range", () => {
-
-                // ...
-                // Code here!
-                // ...
-
-                chai.expect( sheet.get("a3") )
-                    .to.be.eql(3);
-                sheet.set("a2", 9);
-                chai.expect( sheet.get("a3") )
-                    .to.be.eql(10);
-            });
-        });
     });
 
 });
