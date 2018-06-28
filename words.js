@@ -4,15 +4,14 @@ var words;
 var wordList;
 var qtyList;
 
-function Words(text){
+function Words(text, wordsToExclude){
     words = text.split(' ');
     wordList = [];
     qtyList = [];
+    populateLists(wordsToExclude);
 };
 
 Words.prototype.mostUsedWords = function () {
-
-  populateLists();
 
   var mostRepeated = [wordList[0]];
   var qty = qtyList[0];
@@ -27,10 +26,13 @@ Words.prototype.mostUsedWords = function () {
   return mostRepeated;
 };
 
-function populateLists(){
+function populateLists(wordsToExclude){
+  if (wordsToExclude === undefined){
+    wordsToExclude = [];
+  }
   for (var i = 0; i < words.length; i++){
     var index = wordList.indexOf(words[i]);
-    if (index == -1){
+    if (index == -1 && !wordsToExclude.includes(words[i])){
       wordList.push(words[i]);
       qtyList.push(1);
     } else {
