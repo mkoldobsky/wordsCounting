@@ -3,7 +3,7 @@ const Words = require('../words.js');
 
 
 var text;
-var wordsToExclude = ['las', 'la', 'en', 'de', 'es', 'que'];
+var wordsToExclude = ['las', 'la', 'en', 'de', 'es'];
 
 describe("solution", () => {
     beforeEach(() => {
@@ -71,9 +71,11 @@ describe("solution", () => {
                 var mostUsedWords = words.mostUsedWords();
 
                 chai.expect( mostUsedWords.length )
-                    .to.be.eql(1);
-                chai.expect (mostUsedWords[0])
-                    .to.be.eq('boca');
+                    .to.be.eql(2);
+                chai.expect (mostUsedWords.includes('boca'))
+                    .to.be.true;
+                chai.expect (mostUsedWords.includes('que'))
+                    .to.be.true;
 
             });
 
